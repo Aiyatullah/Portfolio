@@ -111,7 +111,7 @@ export default function AgentGate() {
   return (
     <Section
       id="lab"
-      index="04 — Side project"
+      index="04 — Agent infrastructure"
       title={
         <>
           Engineering depth, <span className="serif text-accent">made interactive.</span>
@@ -215,7 +215,15 @@ export default function AgentGate() {
             <Spot className="flex h-full flex-col p-6 md:p-8">
               <div className="mono-label text-accent">{s.kind}</div>
               <h3 className="mt-3 text-2xl font-semibold tracking-tight">{s.name}</h3>
-              <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-fg/75">{s.summary}</p>
+              <p className="mt-3 text-[0.92rem] leading-relaxed text-fg/75">{s.summary}</p>
+              <ul className="mt-4 flex-1 space-y-2 text-sm text-mute">
+                {s.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="text-accent">▸</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-5 flex flex-wrap gap-2">
                 {s.stack.map((t) => (
                   <Tag key={t}>{t}</Tag>

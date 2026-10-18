@@ -16,7 +16,7 @@ export const profile = {
 export const stats = [
   { value: 60, suffix: "/wk", label: "AI articles shipped", note: "scaled from 10 on ContentPilot" },
   { value: 4.5, suffix: "%", label: "Conversion rate", note: "up from 1% after launch", decimals: 1 },
-  { value: 4, suffix: "", label: "Products led or architected", note: "Swiss & global clients" },
+  { value: 4, suffix: "", label: "Production platforms", note: "ContentPilot · MARA · Pontora · ParkingMD" },
   { value: 2, suffix: "", label: "Company awards", note: "Rising Star · AI Hero at EnactOn" },
 ];
 
@@ -27,11 +27,13 @@ export const experience = [
     period: "Feb 2026 — Present",
     place: "Surat, India",
     points: [
-      "Own ContentPilot end to end as a forward-deployed engineer, from scratch to launch.",
+      "Lead engineer on ContentPilot, an AI SEO content platform, working forward-deployed with the client.",
+      "Built Artie, a ClickUp agent that answers @mentions in comments and chat using live Search Console, GA4 and content data through MCP tools, and creates images, checklists and drafts back in the thread.",
       "Led the MARA team and architected Pontora's multi-tenant backend for Swiss clients.",
+      "Shipped features on ParkingMD's Care and Patient portals (Support Queries, template sync locks, campaign attribution) and own their deploy and preview pipelines.",
       "Improved backend performance with lazy initialization, background job scheduling and query/API optimization.",
     ],
-    tags: ["NestJS", "Next.js", "PostgreSQL", "Claude MCP", "LlamaIndex", "Stripe"],
+    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "BullMQ", "Claude MCP", "LlamaIndex", "Stripe", "GitHub Actions"],
     awards: ["Rising Star", "AI Hero"],
   },
   {
@@ -40,7 +42,7 @@ export const experience = [
     period: "Jun 2025 — Jan 2026",
     place: "Surat, India",
     points: [
-      "Led system design and the team for a production Learning Management System: role-based dashboards for instructors and students, course and assignment flows, and secure REST APIs.",
+      "Led system design and the team for a production Learning Management System, then moved onto the ContentPilot platform.",
     ],
     tags: ["System design", "REST", "RBAC", "Team lead"],
     awards: [],
@@ -57,7 +59,6 @@ export type Product = {
   stack: string[];
   metric?: { value: string; label: string };
   hue: number;
-  link?: { label: string; href: string };
 };
 
 export const products: Product[] = [
@@ -65,16 +66,16 @@ export const products: Product[] = [
     id: "contentpilot",
     name: "ContentPilot",
     kind: "AI SEO content platform",
-    badge: "Forward deployed · Owner",
+    badge: "Forward deployed · Lead engineer",
     summary:
-      "Owned end to end, from scratch to launch. A staged content pipeline where AI drafts, humans approve and quality checks gate every step.",
+      "A staged content platform where AI drafts, humans approve and quality checks gate every step, plus an agent that answers the team inside ClickUp.",
     highlights: [
-      "Brand onboarding: audience, guidelines, SEO and visual preferences.",
-      "SERP and competitor-driven outlines with staged generation and human approval points.",
-      "Scheduled job that turns recurring user corrections into persistent brand preferences.",
-      "ClickUp tasks created and updated automatically from pipeline status; Claude MCP agentic pipelines.",
+      "Artie: a ClickUp agent that answers @mentions in task comments and chat with live Search Console and GA4 data, and creates images, checklists and drafts in the thread. Signed webhooks, a resumable job queue and a server-load guard keep it reliable.",
+      "Astro publishing pipeline: queue-driven article workflow with a publish gate, automatic repair of template fields, scheduled publishing, an image CDN and a deploy monitor that checks pages are really live.",
+      "Brand onboarding, SERP and competitor-driven outlines, and staged generation with human approval points.",
+      "A scheduled job turns recurring user corrections into persistent brand preferences; ClickUp tasks update from pipeline status.",
     ],
-    stack: ["NestJS", "Next.js", "PostgreSQL", "Claude MCP", "ClickUp API"],
+    stack: ["Next.js API", "Prisma", "PostgreSQL", "BullMQ", "Claude MCP", "ClickUp API", "AI SDK"],
     metric: { value: "10 → 60", label: "articles / week" },
     hue: 265,
   },
@@ -111,25 +112,28 @@ export const products: Product[] = [
     hue: 160,
   },
   {
-    id: "lms",
-    name: "LMS",
-    kind: "Learning Management System",
-    badge: "Team lead · System design",
+    id: "parkingmd",
+    name: "ParkingMD",
+    kind: "Care Portal & Patient Portal",
+    badge: "Engineer · Features and DevOps",
     summary:
-      "A production Learning Management System with role-based dashboards for instructors and students, built on secure REST APIs. I led the system design and the team.",
+      "The provider/admin Care Portal and the patient-facing portal for ParkingMD. I ship features across both and own how they get deployed.",
     highlights: [
-      "Course and assignment flows for instructors and students.",
-      "Role-based dashboards and secure REST APIs.",
+      "Support Queries: a typed API client, a transactional outbox and a BullMQ worker that keep doctor assignments in sync, safe under retries and out-of-order delivery.",
+      "Support Query pill and inline provider-to-support conversation on the task view, with a read-only admin view.",
+      "Template sync locks so a brand can keep its own document and letter templates, enforced on the receiving side.",
+      "Campaign attribution: UTM parameters now survive magic-link redirects, so SMS and email clicks reach analytics.",
+      "Per-branch preview deployments and deploy scripts on GitHub Actions.",
     ],
-    stack: ["System design", "REST APIs", "RBAC"],
-    hue: 215,
+    stack: ["Next.js", "tRPC", "Drizzle", "PostgreSQL", "BullMQ", "GitHub Actions"],
+    hue: 330,
   },
 ];
 
 export const sideProjects = [
   {
     name: "Agent Gate",
-    kind: "Control plane for AI agents",
+    kind: "Personal project · control plane for AI agents",
     summary:
       "A multi-tenant gateway that sits between AI agents and the REST / MCP tools they call. Scoped permissions, a human approval queue for risky actions, and a full audit trail.",
     bullets: [
@@ -139,32 +143,39 @@ export const sideProjects = [
       "Supabase row-level security for tenant isolation. Swagger docs, unit + e2e tests, Docker Compose.",
     ],
     stack: ["TypeScript", "NestJS", "Next.js", "Supabase", "MCP", "JWT", "Docker"],
-    href: "https://github.com/Aiyatullah",
   },
   {
-    name: "Google Home Automation Assistant",
-    kind: "Agentic smart-home assistant",
+    name: "dbmcp",
+    kind: "Hosted read-only Postgres MCP server",
     summary:
-      "Links Google Home with Claude MCP servers for natural-language home control, reminders and task automation, with context memory and modular tool execution.",
-    bullets: [],
-    stack: ["Python", "FastAPI", "Docker", "Claude MCP"],
-    href: "https://github.com/Aiyatullah",
+      "Lets AI clients query company databases safely. Every person has their own token, every query is audited by name, and SQL is checked before it runs.",
+    bullets: [
+      "Per-person bearer tokens stored as hashes, with revocation and per-database access.",
+      "SQL parsed with the Postgres parser: one SELECT or EXPLAIN, a required LIMIT, a function allowlist and a 30s read-only transaction.",
+      "Row, cell and response-size caps, plus a JSONL audit log of who ran what.",
+      "Docker deploy with backup/restore, health checks and 26 tests.",
+    ],
+    stack: ["TypeScript", "Node.js", "MCP", "PostgreSQL", "Docker"],
   },
   {
-    name: "AI Interview Mocker",
-    kind: "Interview prep platform",
-    summary: "Generates personalized interview questions and evaluates answers with LLMs.",
-    bullets: [],
-    stack: ["Next.js", "TypeScript", "Firebase", "LLMs"],
-    href: "https://github.com/Aiyatullah/Ai-interview-mocker",
+    name: "DB Access portal",
+    kind: "Internal self-serve access tool",
+    summary:
+      "A small Cloudflare Worker that gets a teammate's AI client connected to company databases without a ticket: sign in, get your IP allowed, copy a ready-made MCP config.",
+    bullets: [
+      "Email allowlist and signed session cookies, plus a server-to-server endpoint for other portals.",
+      "One entry per person, so re-clicking updates it instead of piling up rules.",
+      "Contributed to the access configuration and rollout.",
+    ],
+    stack: ["Cloudflare Workers", "Hono", "TypeScript", "JWT", "MCP"],
   },
 ];
 
 export const skills = [
-  { group: "Backend", items: ["Node.js", "NestJS", "Express.js", "REST APIs", "Background jobs", "Stripe"] },
-  { group: "AI", items: ["Agentic AI", "Claude MCP", "LlamaIndex", "RAG", "Semantic search", "OCR", "LLMs"] },
+  { group: "Backend", items: ["Node.js", "NestJS", "Express.js", "REST APIs", "BullMQ queues", "Background jobs", "Stripe"] },
+  { group: "AI", items: ["Agentic AI", "Claude MCP", "LlamaIndex", "RAG", "Semantic search", "OCR", "LLMs", "AI SDK"] },
   { group: "Languages", items: ["TypeScript", "JavaScript", "Python", "Java", "SQL"] },
-  { group: "Data", items: ["PostgreSQL", "Supabase", "MongoDB", "Firebase"] },
+  { group: "Data", items: ["PostgreSQL", "Prisma", "Drizzle ORM", "Supabase", "Redis", "MongoDB", "Firebase"] },
   { group: "Frontend", items: ["React", "Next.js", "Astro", "Tailwind CSS"] },
   { group: "Cloud / DevOps", items: ["Docker", "Google Cloud", "Cloudflare", "GitHub Actions", "Vercel"] },
   { group: "Engineering", items: ["System design", "Multi-tenant SaaS", "RBAC", "Auth", "API & DB design"] },

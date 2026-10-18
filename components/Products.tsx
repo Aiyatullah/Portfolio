@@ -32,13 +32,21 @@ export default function Products() {
                   active === x.id ? "text-fg" : "text-mute hover:text-fg"
                 }`}
               >
-                <span className="mono-label w-8 shrink-0">0{i + 1}</span>
+                <span className="mono-label w-8 shrink-0" style={active === x.id ? { color: `hsl(${x.hue} 90% 72%)` } : undefined}>
+                  0{i + 1}
+                </span>
                 <span className="flex-1">
                   <span className="block text-3xl font-semibold tracking-tight md:text-5xl">{x.name}</span>
                   <span className="mt-1 block text-sm text-mute">{x.kind}</span>
                 </span>
                 <span className={`text-2xl transition-transform ${active === x.id ? "translate-x-0 text-accent" : "-translate-x-2 opacity-0 group-hover:opacity-100"}`}>→</span>
-                {active === x.id && <motion.span layoutId="prod-bar" className="absolute inset-y-0 left-0 w-px bg-accent" />}
+                {active === x.id && (
+                  <motion.span
+                    layoutId="prod-bar"
+                    className="absolute inset-y-0 left-0 w-px"
+                    style={{ background: `hsl(${x.hue} 90% 65%)`, boxShadow: `0 0 18px hsl(${x.hue} 90% 60%)` }}
+                  />
+                )}
               </button>
             </Reveal>
           ))}
