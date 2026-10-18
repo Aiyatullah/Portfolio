@@ -111,7 +111,7 @@ export default function AgentGate() {
   return (
     <Section
       id="lab"
-      index="04 — Side project"
+      index="04 — AI tooling & open source"
       title={
         <>
           Engineering depth, <span className="serif text-accent">made interactive.</span>
@@ -121,7 +121,12 @@ export default function AgentGate() {
       <Reveal>
         <div className="grid gap-8 lg:grid-cols-[1fr_minmax(0,22rem)]">
           <div>
-            <h3 className="text-2xl font-semibold tracking-tight">Agent Gate</h3>
+            <h3 className="flex flex-wrap items-baseline gap-3 text-2xl font-semibold tracking-tight">
+              Agent Gate
+              <a href={sideProjects[0].href} target="_blank" rel="noreferrer" className="font-mono text-xs font-normal text-accent hover:underline">
+                View on GitHub ↗
+              </a>
+            </h3>
             <p className="mt-2 max-w-2xl text-fg/75">
               {sideProjects[0].summary} Try it below: low-risk calls flow straight through; risky ones pause until a human decides.
             </p>
@@ -209,13 +214,28 @@ export default function AgentGate() {
         </div>
       </Reveal>
 
-      <div className="mt-20 grid gap-4 md:grid-cols-2">
+      <div className={`mt-20 grid gap-4 ${sideProjects.length > 2 ? "md:grid-cols-2" : ""}`}>
         {sideProjects.slice(1).map((s, i) => (
           <Reveal key={s.name} delay={i * 0.1}>
             <Spot className="flex h-full flex-col p-6 md:p-8">
               <div className="mono-label text-accent">{s.kind}</div>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{s.name}</h3>
-              <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-fg/75">{s.summary}</p>
+              <h3 className="mt-3 flex flex-wrap items-baseline gap-3 text-2xl font-semibold tracking-tight">
+                {s.name}
+                {s.href && (
+                  <a href={s.href} target="_blank" rel="noreferrer" className="font-mono text-xs font-normal text-accent hover:underline">
+                    View on GitHub ↗
+                  </a>
+                )}
+              </h3>
+              <p className="mt-3 text-[0.92rem] leading-relaxed text-fg/75">{s.summary}</p>
+              <ul className="mt-4 flex-1 space-y-2 text-sm text-mute">
+                {s.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="text-accent">▸</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-5 flex flex-wrap gap-2">
                 {s.stack.map((t) => (
                   <Tag key={t}>{t}</Tag>

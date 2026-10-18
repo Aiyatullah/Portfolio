@@ -11,6 +11,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="grain">
       <SceneLoader />
+      <div aria-hidden className="dotgrid" />
       <div aria-hidden className="vignette" />
       <Cursor />
       <Nav onPalette={() => setOpen(true)} />

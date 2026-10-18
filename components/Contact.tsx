@@ -19,7 +19,11 @@ export default function Contact() {
     }
   };
 
-  const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(`Hello from ${name || "your portfolio"}`)}&body=${encodeURIComponent(msg)}`;
+  const subject = `Hello from ${name || "your portfolio"}`;
+  const body = name ? `${msg}\n\n— ${name}` : msg;
+  const enc = encodeURIComponent;
+  const mailto = `mailto:${profile.email}?subject=${enc(subject)}&body=${enc(body)}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(profile.email)}&su=${enc(subject)}&body=${enc(body)}`;
 
   return (
     <section id="contact" className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-24 sm:px-8 md:pt-32">
@@ -81,11 +85,11 @@ export default function Contact() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              window.location.href = mailto;
+              window.open(gmail, "_blank", "noopener,noreferrer");
             }}
             className="spot space-y-4 rounded-3xl p-6 md:p-8"
           >
-            <div className="mono-label">Quick message — opens your email app</div>
+            <div className="mono-label">Quick message — opens Gmail</div>
             <label className="block">
               <span className="sr-only">Your name</span>
               <input
@@ -107,8 +111,14 @@ export default function Contact() {
               />
             </label>
             <button type="submit" className="rounded-full bg-fg px-6 py-3.5 text-sm font-semibold text-black transition hover:bg-accent">
-              Send message →
+              Open in Gmail →
             </button>
+            <p className="text-xs text-mute">
+              Don't use Gmail?{" "}
+              <a href={mailto} className="underline underline-offset-2 transition hover:text-accent">
+                Use your default mail app
+              </a>
+            </p>
           </form>
         </Reveal>
       </div>
@@ -116,6 +126,9 @@ export default function Contact() {
       <footer className="mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-xs text-mute">
         <span>© {new Date().getFullYear()} {profile.fullName}</span>
         <span className="font-mono">Next.js · three.js · Tailwind · Motion</span>
+        <a href="#home" className="transition hover:text-accent">
+          Back to top ↑
+        </a>
       </footer>
     </section>
   );

@@ -9,7 +9,7 @@ export const sections = [
   { id: "impact", label: "Impact" },
   { id: "experience", label: "Experience" },
   { id: "work", label: "Products" },
-  { id: "lab", label: "Agent Gate" },
+  { id: "lab", label: "AI Tools" },
   { id: "skills", label: "Stack" },
   { id: "contact", label: "Contact" },
 ];

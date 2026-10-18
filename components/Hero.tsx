@@ -116,6 +116,30 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      <motion.aside
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-24 right-8 hidden w-72 rounded-2xl border border-line bg-black/40 p-5 backdrop-blur-xl xl:block"
+        aria-label="Currently working on"
+      >
+        <div className="mono-label mb-4 flex items-center gap-2 text-accent">
+          <span className="blink h-1.5 w-1.5 rounded-full bg-accent" /> Now shipping
+        </div>
+        <ul className="space-y-3 text-sm">
+          {[
+            ["ContentPilot", "Artie, the ClickUp agent"],
+            ["ParkingMD", "Support Queries & deploy pipelines"],
+            ["dbmcp", "Safe read-only SQL for AI clients"],
+          ].map(([n, d]) => (
+            <li key={n} className="flex flex-col border-l border-accent/40 pl-3">
+              <span className="font-medium">{n}</span>
+              <span className="text-xs text-mute">{d}</span>
+            </li>
+          ))}
+        </ul>
+      </motion.aside>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
