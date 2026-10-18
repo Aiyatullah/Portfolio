@@ -21,6 +21,12 @@ function Clock() {
 
 export default function Hero() {
   const [r, setR] = useState(0);
+  const [guest, setGuest] = useState("");
+  useEffect(() => {
+    // personalised links: /?for=acme-team shows a greeting (plain text only)
+    const f = new URLSearchParams(window.location.search).get("for");
+    if (f) setGuest(f.replace(/[-_]+/g, " ").replace(/[^\p{L}\p{N} .&']/gu, "").trim().slice(0, 40));
+  }, []);
   useEffect(() => {
     const id = setInterval(() => setR((v) => (v + 1) % roles.length), 2800);
     return () => clearInterval(id);
@@ -40,8 +46,8 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="mb-8 flex flex-wrap items-center gap-3"
       >
-        <span className="flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs text-accent">
-          <span className="blink h-1.5 w-1.5 rounded-full bg-accent" /> Open to Backend / AI engineering roles
+        <span className="rounded-full border border-line bg-white/[0.04] px-3 py-1.5 text-xs text-fg/80">
+          {guest ? <>Hi <span className="capitalize">{guest}</span>, thanks for stopping by</> : "Software Engineer · EnactOn Technologies"}
         </span>
         <span className="mono-label">
           {profile.location.split(",")[0]} · <Clock />

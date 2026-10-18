@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/data";
 
 const title = `${profile.name} — Software Engineer (Backend / Full-Stack / AI)`;
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
