@@ -6,7 +6,7 @@ export const profile = {
   location: "Surat, Gujarat, India",
   email: "zeelsaiyed12@gmail.com",
   phone: "+91 9825896794",
-  linkedin: "https://www.linkedin.com/in/aiyatullah-saiyed",
+  linkedin: "https://www.linkedin.com/in/aiyatullah",
   github: "https://github.com/Aiyatullah",
   leetcode: "https://leetcode.com/u/aiyatullah/",
   resume: "/Saiyed_Aiyatullah_Resume.pdf",
