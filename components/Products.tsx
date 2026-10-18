@@ -85,7 +85,7 @@ export default function Products() {
                 </div>
                 <h3 className="mt-6 text-3xl font-semibold tracking-tight md:text-4xl">{p.name}</h3>
                 <p className="mt-3 max-w-xl leading-relaxed text-fg/75">{p.summary}</p>
-                <div className="mono-label mt-7">What I built</div>
+                <div className="mono-label mt-7">Key features</div>
                 <ul className="mt-3 space-y-3 text-[0.92rem] leading-relaxed text-fg/80">
                   {p.highlights.map((h) => (
                     <li key={h} className="flex gap-3">

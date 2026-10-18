@@ -68,12 +68,14 @@ export const products: Product[] = [
     kind: "AI SEO content platform",
     badge: "Forward deployed · Lead engineer",
     summary:
-      "A staged content platform where AI drafts, humans approve and quality checks gate every step, plus an agent that answers the team inside ClickUp.",
+      "An AI content platform that takes SEO articles from keyword to published page. AI does the heavy lifting, people approve the important steps, and quality checks gate everything that goes live.",
     highlights: [
-      "Artie: a ClickUp agent that answers @mentions in task comments and chat with live Search Console and GA4 data, and creates images, checklists and drafts in the thread. Signed webhooks, a resumable job queue and a server-load guard keep it reliable.",
-      "Astro publishing pipeline: queue-driven article workflow with a publish gate, automatic repair of template fields, scheduled publishing, an image CDN and a deploy monitor that checks pages are really live.",
-      "Brand onboarding, SERP and competitor-driven outlines, and staged generation with human approval points.",
-      "A scheduled job turns recurring user corrections into persistent brand preferences; ClickUp tasks update from pipeline status.",
+      "End-to-end article automation: keyword and SERP research, competitor-driven outlines, drafts, images and SEO metadata in one pipeline, taking output from 10 to up to 60 articles a week.",
+      "Human in the loop by design: approval gates on the outline, the draft and the publish step, with automated quality checks before anything goes live.",
+      "Agentic visual editor: an AI assistant that edits articles and fills template pages field by field, with live previews, undo and history.",
+      "Brand-aware: onboarding captures audience, guidelines and SEO preferences, and repeated corrections are learned as lasting brand preferences.",
+      "Publishes straight to each brand's site (Astro on GitHub and WordPress), on a schedule, with an image CDN and a check that pages are really live.",
+      "Works where the team works: Artie, a ClickUp agent, answers @mentions with live Search Console and GA4 data, and an MCP server lets Claude plan topics and queue articles only after explicit confirmation.",
     ],
     stack: ["Next.js API", "Prisma", "PostgreSQL", "BullMQ", "Claude MCP", "ClickUp API", "AI SDK"],
     metric: { value: "10 → 60", label: "articles / week" },
@@ -119,10 +121,12 @@ export const products: Product[] = [
     summary:
       "ParkingMD lets patients get official medical documents online: disability and pregnancy parking placards, doctor's notes, FMLA leave papers, tinted-window medical exemptions and more. Patients sign up, pay and complete an intake in the Patient Portal. Doctors and admins review each case, sign the document and deliver it through the Care Portal, across several brands from one codebase.",
     highlights: [
-      "Support Queries: lets a doctor message the support team from inside a case. A typed API client, a transactional outbox and a BullMQ worker keep assignments in sync, safe under retries and out-of-order delivery. Includes a Support Query button, an inline conversation and a read-only admin view.",
-      "Template sync locks: a brand can keep its own document and letter templates while the master set syncs, enforced on the receiving side.",
-      "Campaign attribution: UTM parameters now survive the magic-link redirect, so SMS and email campaign clicks reach analytics.",
-      "Per-branch preview deployments, deploy scripts and PR-to-ClickUp automation on GitHub Actions.",
+      "State-aware services: every service has its own guided funnel and the right state forms.",
+      "Guided patient journey: sign-up, checkout, scheduling, intake, ID and medical-records upload, with a live status page for each case.",
+      "Doctor and admin workflow: review intake, generate and e-sign official documents, deliver them to the patient, and track consent for records requests.",
+      "Always in touch: SMS and email notifications, automated follow-up calls, patient chat, and a Support Query channel so doctors can ask the support team from inside a case.",
+      "Admin tooling: custom KPI dashboards, work queues, template syncing across brands and campaign attribution from SMS and email clicks.",
+      "Payments with Stripe and provider payouts, plus per-branch preview deployments for safe releases.",
     ],
     stack: ["Next.js", "tRPC", "Drizzle", "PostgreSQL", "BullMQ", "GitHub Actions"],
     metric: { value: "2", label: "portals" },
@@ -156,14 +160,28 @@ export const sideProjects: {
     name: "Secure database access for AI",
     kind: "dbmcp + DB Access portal · internal tooling",
     summary:
-      "Teammates want their AI assistants to read company data, but not to hold database credentials or risk a write. A self-serve portal gets a teammate connected in a few clicks, and dbmcp, a hosted read-only Postgres MCP server, controls who can query what and records every query.",
+      "Teammates want their AI assistants to read company data, but not to hold database credentials or risk a write. A self-serve portal gets them connected in a few clicks, and a hosted read-only Postgres MCP server controls who can query what.",
     bullets: [
-      "dbmcp: per-person tokens stored as hashes, with revocation and per-database access.",
-      "Every SQL statement is parsed before it runs: one SELECT or EXPLAIN, a required LIMIT, a function allowlist and a 30s read-only transaction, plus row and response-size caps.",
-      "JSONL audit log of who ran what. Docker deploy with backup/restore, health checks and 26 tests.",
-      "DB Access portal: a small Cloudflare Worker (Hono) with an email allowlist and signed sessions that hands out a ready-to-paste MCP config. I contributed to its access configuration and rollout.",
+      "Self-serve onboarding: sign in, get access and copy a ready-made MCP config.",
+      "Per-person tokens stored as hashes, with revocation and per-database access.",
+      "Every SQL statement is checked before it runs: one SELECT or EXPLAIN, a required LIMIT, a function allowlist and a 30s read-only transaction, with row and size caps.",
+      "A named audit log of who ran which query. Docker deploy with backup/restore, health checks and 26 tests.",
     ],
     stack: ["TypeScript", "Node.js", "MCP", "PostgreSQL", "Cloudflare Workers", "Hono", "Docker"],
+  },
+  {
+    name: "Swiss Tax Calculator MCP",
+    kind: "Open source · MCP server + Python API",
+    summary:
+      "Lets AI assistants answer Swiss tax questions with real numbers. It wraps the official ESTV federal tax calculator and covers every Swiss municipality for tax years 2010–2026, with no API key needed.",
+    bullets: [
+      "Household income and wealth tax, with deductions, for any municipality.",
+      "Compare places, or find the cheapest municipality nearby.",
+      "Plan capital withdrawals, and see what a deduction is worth.",
+      "Capital-payment, inheritance and gift, and company tax. Usable as an MCP server or a plain Python client, checked against golden test cases.",
+    ],
+    stack: ["Python", "MCP", "httpx", "pytest", "uv"],
+    href: "https://github.com/Aiyatullah/swiss-tax-calculator-mcp",
   },
 ];
 
