@@ -22,7 +22,7 @@ export default function OG() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#c8ff3d", fontSize: 26 }}>
           <div style={{ width: 14, height: 14, borderRadius: 14, background: "#c8ff3d" }} />
-          Open to Backend / AI engineering roles
+          EnactOn Technologies · Surat, India
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 96, fontWeight: 700, letterSpacing: -3, lineHeight: 1 }}>Saiyed Aiyatullah</div>
