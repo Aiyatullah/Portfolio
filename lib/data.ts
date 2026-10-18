@@ -114,26 +114,33 @@ export const products: Product[] = [
   {
     id: "parkingmd",
     name: "ParkingMD",
-    kind: "Care Portal & Patient Portal",
+    kind: "Online medical documents: Care Portal + Patient Portal",
     badge: "Engineer · Features and DevOps",
     summary:
-      "The provider/admin Care Portal and the patient-facing portal for ParkingMD. I ship features across both and own how they get deployed.",
+      "ParkingMD lets patients get official medical documents online: disability and pregnancy parking placards, doctor's notes, FMLA leave papers, tinted-window medical exemptions and more. Patients sign up, pay and complete an intake in the Patient Portal. Doctors and admins review each case, sign the document and deliver it through the Care Portal, across several brands from one codebase.",
     highlights: [
-      "Support Queries: a typed API client, a transactional outbox and a BullMQ worker that keep doctor assignments in sync, safe under retries and out-of-order delivery.",
-      "Support Query pill and inline provider-to-support conversation on the task view, with a read-only admin view.",
-      "Template sync locks so a brand can keep its own document and letter templates, enforced on the receiving side.",
-      "Campaign attribution: UTM parameters now survive magic-link redirects, so SMS and email clicks reach analytics.",
-      "Per-branch preview deployments and deploy scripts on GitHub Actions.",
+      "Support Queries: lets a doctor message the support team from inside a case. A typed API client, a transactional outbox and a BullMQ worker keep assignments in sync, safe under retries and out-of-order delivery. Includes a Support Query button, an inline conversation and a read-only admin view.",
+      "Template sync locks: a brand can keep its own document and letter templates while the master set syncs, enforced on the receiving side.",
+      "Campaign attribution: UTM parameters now survive the magic-link redirect, so SMS and email campaign clicks reach analytics.",
+      "Per-branch preview deployments, deploy scripts and PR-to-ClickUp automation on GitHub Actions.",
     ],
     stack: ["Next.js", "tRPC", "Drizzle", "PostgreSQL", "BullMQ", "GitHub Actions"],
+    metric: { value: "2", label: "portals" },
     hue: 330,
   },
 ];
 
-export const sideProjects = [
+export const sideProjects: {
+  name: string;
+  kind: string;
+  summary: string;
+  bullets: string[];
+  stack: string[];
+  href?: string;
+}[] = [
   {
     name: "Agent Gate",
-    kind: "Personal project · control plane for AI agents",
+    kind: "Open source · control plane for AI agents",
     summary:
       "A multi-tenant gateway that sits between AI agents and the REST / MCP tools they call. Scoped permissions, a human approval queue for risky actions, and a full audit trail.",
     bullets: [
@@ -143,31 +150,20 @@ export const sideProjects = [
       "Supabase row-level security for tenant isolation. Swagger docs, unit + e2e tests, Docker Compose.",
     ],
     stack: ["TypeScript", "NestJS", "Next.js", "Supabase", "MCP", "JWT", "Docker"],
+    href: "https://github.com/Aiyatullah/Agent-Gate",
   },
   {
-    name: "dbmcp",
-    kind: "Hosted read-only Postgres MCP server",
+    name: "Secure database access for AI",
+    kind: "dbmcp + DB Access portal · internal tooling",
     summary:
-      "Lets AI clients query company databases safely. Every person has their own token, every query is audited by name, and SQL is checked before it runs.",
+      "Teammates want their AI assistants to read company data, but not to hold database credentials or risk a write. A self-serve portal gets a teammate connected in a few clicks, and dbmcp, a hosted read-only Postgres MCP server, controls who can query what and records every query.",
     bullets: [
-      "Per-person bearer tokens stored as hashes, with revocation and per-database access.",
-      "SQL parsed with the Postgres parser: one SELECT or EXPLAIN, a required LIMIT, a function allowlist and a 30s read-only transaction.",
-      "Row, cell and response-size caps, plus a JSONL audit log of who ran what.",
-      "Docker deploy with backup/restore, health checks and 26 tests.",
+      "dbmcp: per-person tokens stored as hashes, with revocation and per-database access.",
+      "Every SQL statement is parsed before it runs: one SELECT or EXPLAIN, a required LIMIT, a function allowlist and a 30s read-only transaction, plus row and response-size caps.",
+      "JSONL audit log of who ran what. Docker deploy with backup/restore, health checks and 26 tests.",
+      "DB Access portal: a small Cloudflare Worker (Hono) with an email allowlist and signed sessions that hands out a ready-to-paste MCP config. I contributed to its access configuration and rollout.",
     ],
-    stack: ["TypeScript", "Node.js", "MCP", "PostgreSQL", "Docker"],
-  },
-  {
-    name: "DB Access portal",
-    kind: "Internal self-serve access tool",
-    summary:
-      "A small Cloudflare Worker that gets a teammate's AI client connected to company databases without a ticket: sign in, get your IP allowed, copy a ready-made MCP config.",
-    bullets: [
-      "Email allowlist and signed session cookies, plus a server-to-server endpoint for other portals.",
-      "One entry per person, so re-clicking updates it instead of piling up rules.",
-      "Contributed to the access configuration and rollout.",
-    ],
-    stack: ["Cloudflare Workers", "Hono", "TypeScript", "JWT", "MCP"],
+    stack: ["TypeScript", "Node.js", "MCP", "PostgreSQL", "Cloudflare Workers", "Hono", "Docker"],
   },
 ];
 
