@@ -124,7 +124,7 @@ export default function Contact() {
       </div>
 
       <footer className="mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-xs text-mute">
-        <span>© {new Date().getFullYear()} {profile.fullName}</span>
+        <span>© {new Date().getFullYear()} {profile.fullName} · Software developer in Surat, Gujarat, India</span>
         <span className="font-mono">Next.js · three.js · Tailwind · Motion</span>
         <a href="#home" className="transition hover:text-accent">
           Back to top ↑

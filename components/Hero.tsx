@@ -83,7 +83,7 @@ export default function Hero() {
           <span className="blink">_</span>
         </p>
         <p className="text-base leading-relaxed text-mute md:text-lg">
-          Software Engineer at EnactOn Technologies. I design and ship multi-tenant SaaS backends, agentic AI pipelines and
+          Software Engineer at EnactOn Technologies in Surat, Gujarat. I design and ship multi-tenant SaaS backends, agentic AI pipelines and
           workflow automation for Swiss and global clients, and own delivery from system design to launch.
         </p>
       </motion.div>

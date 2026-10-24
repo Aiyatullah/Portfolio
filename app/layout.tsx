@@ -7,9 +7,9 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/data";
 
-const title = `${profile.name} — Software Engineer | Backend, Agentic AI & Full-Stack`;
+const title = `${profile.name} — Software Engineer in Surat, Gujarat | Backend & Agentic AI`;
 const description =
-  "Saiyed Aiyatullah is a Software Engineer in Surat, India at EnactOn Technologies. He builds multi-tenant SaaS backends, agentic AI pipelines (MCP) and workflow automation with NestJS, Next.js and PostgreSQL for Swiss and global clients.";
+  "Saiyed Aiyatullah (Aiyatullah Saiyed) is a software developer in Surat, Gujarat, India, working at EnactOn Technologies. He builds multi-tenant SaaS backends, agentic AI pipelines (MCP) and workflow automation with NestJS, Next.js and PostgreSQL for Swiss and global clients.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.url),
@@ -18,7 +18,12 @@ export const metadata: Metadata = {
   applicationName: `${profile.name} — Portfolio`,
   keywords: [
     "Saiyed Aiyatullah",
+    "Saiyed Aiyatullah portfolio",
     "Aiyatullah Saiyed",
+    "Saiyad Aiyatullah",
+    "Aiyatullah Saiyad",
+    "Software Developer in Surat",
+    "Software Engineer Gujarat",
     "Software Engineer",
     "Backend Engineer",
     "Agentic AI",
@@ -39,7 +44,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   openGraph: { title, description, type: "profile", url: "/", siteName: `${profile.name} — Portfolio`, locale: "en_IN", firstName: "Saiyed", lastName: "Aiyatullah" },
   twitter: { card: "summary_large_image", title, description },
-  verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION ?? "4lqGN_AJudPSg-j1O3EUXWGhW0mSLsA73BkAE0YCfas" },
 };
 
 export const viewport: Viewport = { themeColor: "#07070a", colorScheme: "dark" };
@@ -48,7 +53,7 @@ const person = {
   "@type": "Person",
   "@id": `${profile.url}/#person`,
   name: profile.fullName,
-  alternateName: [profile.name, "Aiyatullah Saiyed"],
+  alternateName: [profile.name, "Aiyatullah Saiyed", "Saiyad Aiyatullah", "Aiyatullah Saiyad"],
   url: profile.url,
   jobTitle: "Software Engineer",
   description,
