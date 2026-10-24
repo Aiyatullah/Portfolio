@@ -1,0 +1,19 @@
+# Saiyed Aiyatullah — Software Engineer
+
+> Software Engineer at EnactOn Technologies (Surat, India) focused on backend engineering, multi-tenant SaaS, agentic AI (MCP) and workflow automation. Stack: TypeScript, NestJS, Next.js, PostgreSQL, Python.
+
+## Links
+- Portfolio: https://aiyatullah.vercel.app
+- LinkedIn: https://www.linkedin.com/in/aiyatullah
+- GitHub: https://github.com/Aiyatullah
+- Résumé (PDF): https://aiyatullah.vercel.app/Saiyed_Aiyatullah_Resume.pdf
+
+## Work
+- ContentPilot: AI SEO content platform with human approval gates, an agentic visual editor, scheduled publishing and Artie, a ClickUp agent (10 to 60 articles/week).
+- MARA: Swiss real-estate platform with semantic property search (team lead).
+- Pontora: multi-tenant Swiss HRMS backend with RBAC, payroll and Stripe billing in CHF.
+- ParkingMD: care and patient portals for online medical documents.
+- Open source: Agent Gate (control plane for AI agents), Swiss Tax Calculator MCP.
+
+## Contact
+- Email: zeelsaiyed12@gmail.com

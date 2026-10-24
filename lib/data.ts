@@ -10,7 +10,10 @@ export const profile = {
   github: "https://github.com/Aiyatullah",
   leetcode: "https://leetcode.com/u/aiyatullah/",
   resume: "/Saiyed_Aiyatullah_Resume.pdf",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // production URL: explicit env var, else Vercel's production domain, else the current live address
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://aiyatullah.vercel.app"),
 };
 
 export const stats = [

@@ -7,32 +7,66 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/data";
 
-const title = `${profile.name} — Software Engineer (Backend / Full-Stack / AI)`;
+const title = `${profile.name} — Software Engineer | Backend, Agentic AI & Full-Stack`;
 const description =
-  "Software Engineer at EnactOn Technologies building multi-tenant SaaS backends, agentic AI pipelines and workflow automation for Swiss and global clients. NestJS, Next.js, PostgreSQL, Claude MCP.";
+  "Saiyed Aiyatullah is a Software Engineer in Surat, India at EnactOn Technologies. He builds multi-tenant SaaS backends, agentic AI pipelines (MCP) and workflow automation with NestJS, Next.js and PostgreSQL for Swiss and global clients.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.url),
-  title,
+  title: { default: title, template: `%s | ${profile.name}` },
   description,
-  keywords: ["Saiyed Aiyatullah", "Software Engineer", "NestJS", "Next.js", "PostgreSQL", "Agentic AI", "Claude MCP", "Surat", "Portfolio"],
-  authors: [{ name: profile.fullName, url: profile.linkedin }],
-  openGraph: { title, description, type: "website", siteName: profile.name },
+  applicationName: `${profile.name} — Portfolio`,
+  keywords: [
+    "Saiyed Aiyatullah",
+    "Aiyatullah Saiyed",
+    "Software Engineer",
+    "Backend Engineer",
+    "Agentic AI",
+    "MCP",
+    "Claude MCP",
+    "NestJS",
+    "Next.js",
+    "PostgreSQL",
+    "multi-tenant SaaS",
+    "Surat",
+    "Gujarat",
+    "India",
+    "Portfolio",
+  ],
+  authors: [{ name: profile.fullName, url: profile.url }],
+  creator: profile.fullName,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  openGraph: { title, description, type: "profile", url: "/", siteName: `${profile.name} — Portfolio`, locale: "en_IN", firstName: "Saiyed", lastName: "Aiyatullah" },
   twitter: { card: "summary_large_image", title, description },
+  verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
 export const viewport: Viewport = { themeColor: "#07070a", colorScheme: "dark" };
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const person = {
   "@type": "Person",
+  "@id": `${profile.url}/#person`,
   name: profile.fullName,
+  alternateName: [profile.name, "Aiyatullah Saiyed"],
+  url: profile.url,
   jobTitle: "Software Engineer",
+  description,
   worksFor: { "@type": "Organization", name: "EnactOn Technologies" },
   email: profile.email,
   address: { "@type": "PostalAddress", addressLocality: "Surat", addressRegion: "Gujarat", addressCountry: "IN" },
-  alumniOf: "Parul University",
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Parul University" },
+  knowsAbout: ["Backend engineering", "Agentic AI", "Model Context Protocol", "NestJS", "Next.js", "PostgreSQL", "Multi-tenant SaaS", "System design", "RBAC"],
   sameAs: [profile.linkedin, profile.github, profile.leetcode],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    person,
+    { "@type": "WebSite", "@id": `${profile.url}/#website`, url: profile.url, name: `${profile.name} — Portfolio`, inLanguage: "en", publisher: { "@id": `${profile.url}/#person` } },
+    { "@type": "ProfilePage", "@id": `${profile.url}/#profile`, url: profile.url, name: title, isPartOf: { "@id": `${profile.url}/#website` }, mainEntity: { "@id": `${profile.url}/#person` } },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
